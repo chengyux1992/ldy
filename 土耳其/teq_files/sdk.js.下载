@@ -1,0 +1,21 @@
+
+(function () {
+    function getScript(src) {
+        const protocol = (window.location.protocol === "https:") ? "https://" : "http://";
+        src = src && (src.indexOf("http://") === 0 || src.indexOf("https://") === 0) ? src : protocol + src;
+        const pageScript = document.createElement('script'),
+            head = document.getElementsByTagName('head')[0];
+        pageScript.type = 'text/javascript';
+
+        let _v = (new Date).getTime();
+        if (typeof v === 'string') {
+            _v = v
+        }
+        pageScript.src = src + '?v=' + _v;
+        pageScript.onload = pageScript.onreadystatechange = function () {
+        }
+        head.appendChild(pageScript);
+    }
+
+    getScript(au + "/static/common/plugins/jsv/track.js");
+})();

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="26px" height="21px" viewBox="0 0 26 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Ojo desactivado</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="User-Settings---Password" transform="translate(-324.000000, -70.000000)">
+            <g id="ojo-desactivado" transform="translate(325.000000, 71.000000)">
+                <path d="M13.47464,6.09116 C12.99224,5.85276 12.45064,5.71556 11.87624,5.71556 C9.87864,5.71556 8.25904,7.33476 8.25904,9.33276 C8.25904,9.90716 8.39664,10.44836 8.63464,10.93116 L13.47464,6.09116 Z" id="Fill-1" fill="#9C9C9C"></path>
+                <path d="M14.16488,6.5322 L9.07568,11.6214 C9.73928,12.4322 10.74688,12.9498 11.87608,12.9498 C13.87408,12.9498 15.49368,11.3306 15.49368,9.3326 C15.49368,8.2034 14.97568,7.1954 14.16488,6.5322" id="Fill-3" fill="#9C9C9C"></path>
+                <path d="M11.8762,2.59256 C6.8866,2.59256 2.531,5.30336 0.2002,9.33256 C2.531,13.36176 6.8866,16.07256 11.8762,16.07256 C16.8658,16.07256 21.2218,13.36176 23.5522,9.33256 C21.2218,5.30336 16.8658,2.59256 11.8762,2.59256 Z" id="Stroke-5" stroke="#9C9C9C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <line x1="2.7438" y1="18.4652" x2="21.009" y2="0.2" id="Stroke-7" stroke="#9C9C9C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></line>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="13px" height="10px" viewBox="0 0 13 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Flecha anaranjado - Se mantiene</title>
+    <g id="Flecha-anaranjado---Se-mantiene" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Flecha-anaranjado---se-mantiene" transform="translate(1.000000, 1.000000)" stroke="#FFA400" stroke-width="2">
+            <polyline id="Stroke-1" points="7 8 11 3.97628571 7 0"></polyline>
+            <line x1="-4.54747351e-13" y1="4" x2="9.368" y2="4" id="Stroke-3"></line>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="33px" height="33px" viewBox="0 0 33 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>1 Score</title>
+    <g id="1-Score" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-24" transform="translate(1.000000, 1.000000)" stroke="#F5F5F5" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+            <g id="Group-5">
+                <path d="M0,15.5 C0,24.0604476 6.94072807,31 15.4992426,31 C24.0607867,31 31,24.0604476 31,15.5 C31,6.93955238 24.0607867,0 15.4992426,0 C6.94072807,0 0,6.93955238 0,15.5 Z" id="Stroke-1"></path>
+            </g>
+        </g>
+        <g id="Group-5" transform="translate(16.503900, 1.004900)" stroke="#EC6364" stroke-linejoin="round" stroke-width="2">
+            <path d="M9.112,2.959 C6.554,1.098 3.405,0 0,0" id="Stroke-3"></path>
+        </g>
+        <polygon id="1" fill="#272727" fill-rule="nonzero" points="18.4947266 21.4873047 18.4947266 11.5 18.2828125 11.5 14.4 12.9287109 14.4 14.3300781 16.8404297 13.4960938 16.8404297 21.4873047"></polygon>
+    </g>
+</svg>

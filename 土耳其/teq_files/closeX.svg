@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="16px" viewBox="0 0 17 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Close X (black)</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <g id="Sign-Up---Join-for-Free" transform="translate(-342.000000, -17.000000)" stroke="#272727" stroke-width="1.6">
+            <g id="Group" transform="translate(335.000000, 11.000000)">
+                <g id="Group-11" transform="translate(15.000000, 14.500000) rotate(-315.000000) translate(-15.000000, -14.500000) translate(5.000000, 4.000000)">
+                    <line x1="9.72" y1="0.36" x2="9.72" y2="19.8" id="Line"></line>
+                    <line x1="19.44" y1="10.08" x2="0" y2="10.08" id="Line"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
