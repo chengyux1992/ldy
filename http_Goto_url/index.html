@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跳转页面</title>
+    <script>
+        window.onload = function() {
+            let sites = JSON.parse(localStorage.getItem('sites')) || [];
+            let isRandom = localStorage.getItem('isRandom') === 'true';
+            let visitCounts = JSON.parse(localStorage.getItem('visitCounts')) || {};
+            let currentIndex = parseInt(localStorage.getItem('currentIndex') || '0');
+
+            if (sites.length > 0) {
+                let siteIndex;
+                if (isRandom) {
+                    siteIndex = Math.floor(Math.random() * sites.length);
+                } else {
+                    siteIndex = currentIndex % sites.length;
+                    localStorage.setItem('currentIndex', (currentIndex + 1).toString());
+                }
+                
+                let site = sites[siteIndex];
+                let today = new Date().toISOString().split('T')[0];
+                
+                if (!visitCounts[site.url]) {
+                    visitCounts[site.url] = { total: 0, unique: 0, dailyVisits: {} };
+                }
+                visitCounts[site.url].total += 1;
+                visitCounts[site.url].dailyVisits[today] = (visitCounts[site.url].dailyVisits[today] || 0) + 1;
+                if (visitCounts[site.url].total === 1) {
+                    visitCounts[site.url].unique = 1;
+                }
+                localStorage.setItem('visitCounts', JSON.stringify(visitCounts));
+
+                // 跳转到选定的网站
+                window.location.href = site.url;
+            } else {
+                window.location.href = 'admin.html';
+            }
+        };
+    </script>
+</head>
+<body>
+</body>
+</html>

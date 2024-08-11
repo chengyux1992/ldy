@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网站管理</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #ecf0f1;
+            --text-color: #34495e;
+            --border-color: #bdc3c7;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .jump-mode {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .jump-mode label {
+            margin: 0 15px;
+            cursor: pointer;
+        }
+
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        input[type="text"], input[type="url"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: #fff;
+            font-weight: 500;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        .action-buttons button {
+            margin-right: 5px;
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+
+        .control-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .control-buttons button {
+            background-color: var(--secondary-color);
+        }
+
+        .control-buttons button:hover {
+            background-color: #27ae60;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            margin: 10px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            form {
+                flex-direction: column;
+            }
+
+            .action-buttons {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+
+            .stats {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>网站管理</h1>
+        <div class="card">
+            <div class="jump-mode">
+                <label>
+                    <input type="radio" name="jumpMode" value="sequential" checked> 顺序跳转
+                </label>
+                <label>
+                    <input type="radio" name="jumpMode" value="random"> 随机跳转
+                </label>
+            </div>
+            <form id="addSiteForm">
+                <input type="url" id="url" placeholder="网站地址" required>
+                <input type="text" id="note" placeholder="备注">
+                <button type="submit">添加网站</button>
+            </form>
+        </div>
+        <div class="card">
+            <h2>总体访问统计</h2>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="totalVisits">0</div>
+                    <div>总访问次数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="uniqueVisits">0</div>
+                    <div>不重复访问次数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="repeatVisits">0</div>
+                    <div>重复访问次数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="todayVisits">0</div>
+                    <div>今日点击</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="yesterdayVisits">0</div>
+                    <div>昨日点击</div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <table id="siteTable">
+                <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>网站地址</th>
+                        <th>备注</th>
+                        <th>总访问量</th>
+                        <th>不重复访问</th>
+                        <th>重复访问</th>
+                        <th>今日访问</th>
+                        <th>昨日访问</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <div class="control-buttons">
+        <button id="clearAllVisits">清除所有访问记录</button>
+        <button id="deleteAllSites">删除所有网址</button>
+        <button id="backToTop">回到顶部</button>
+        <button id="refresh">刷新</button>
+    </div>
+
+    <script>
+        let sites = JSON.parse(localStorage.getItem('sites')) || [];
+        let visitCounts = JSON.parse(localStorage.getItem('visitCounts')) || {};
+
+        function saveSites() {
+            localStorage.setItem('sites', JSON.stringify(sites));
+        }
+
+        function saveVisitCounts() {
+            localStorage.setItem('visitCounts', JSON.stringify(visitCounts));
+        }
+
+        function getToday() {
+            return new Date().toISOString().split('T')[0];
+        }
+
+        function getYesterday() {
+            const date = new Date();
+            date.setDate(date.getDate() - 1);
+            return date.toISOString().split('T')[0];
+        }
+
+        function updateStats() {
+            let totalVisits = 0;
+            let uniqueVisits = 0;
+            let repeatVisits = 0;
+            let todayVisits = 0;
+            let yesterdayVisits = 0;
+            const today = getToday();
+            const yesterday = getYesterday();
+
+            for (let url in visitCounts) {
+                totalVisits += visitCounts[url].total || 0;
+                uniqueVisits += visitCounts[url].unique || 0;
+                repeatVisits += (visitCounts[url].total || 0) - (visitCounts[url].unique || 0);
+                todayVisits += (visitCounts[url].dailyVisits && visitCounts[url].dailyVisits[today]) || 0;
+                yesterdayVisits += (visitCounts[url].dailyVisits && visitCounts[url].dailyVisits[yesterday]) || 0;
+            }
+
+            document.getElementById('totalVisits').textContent = totalVisits;
+            document.getElementById('uniqueVisits').textContent = uniqueVisits;
+            document.getElementById('repeatVisits').textContent = repeatVisits;
+            document.getElementById('todayVisits').textContent = todayVisits;
+            document.getElementById('yesterdayVisits').textContent = yesterdayVisits;
+        }
+
+        function updateTable() {
+            const tbody = document.querySelector('#siteTable tbody');
+            tbody.innerHTML = '';
+            const today = getToday();
+            const yesterday = getYesterday();
+
+            sites.forEach((site, index) => {
+                const visits = visitCounts[site.url] || { total: 0, unique: 0, dailyVisits: {} };
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${site.url}</td>
+                    <td>${site.note}</td>
+                    <td>${visits.total || 0}</td>
+                    <td>${visits.unique || 0}</td>
+                    <td>${(visits.total || 0) - (visits.unique || 0)}</td>
+                    <td>${(visits.dailyVisits && visits.dailyVisits[today]) || 0}</td>
+                    <td>${(visits.dailyVisits && visits.dailyVisits[yesterday]) || 0}</td>
+                    <td class="action-buttons">
+                        <button onclick="editSite(${index})">修改</button>
+                        <button onclick="deleteSite(${index})">删除</button>
+                        <button onclick="clearVisits('${site.url}')">清除访问记录</button>
+                        <button onclick="moveSiteUp(${index})">上移</button>
+                        <button onclick="moveSiteDown(${index})">下移</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+            updateStats();
+        }
+
+        document.getElementById('addSiteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const url = document.getElementById('url').value;
+            const note = document.getElementById('note').value;
+            sites.push({ url, note });
+            saveSites();
+            updateTable();
+            this.reset();
+        });
+
+        function editSite(index) {
+            const newUrl = prompt('输入新的网站地址:', sites[index].url);
+            const newNote = prompt('输入新的备注:', sites[index].note);
+            if (newUrl) {
+                const oldUrl = sites[index].url;
+                sites[index] = { url: newUrl, note: newNote || '' };
+                if (oldUrl !== newUrl && visitCounts[oldUrl]) {
+                    visitCounts[newUrl] = visitCounts[oldUrl];
+                    delete visitCounts[oldUrl];
+                }
+                saveSites();
+                saveVisitCounts();
+                updateTable();
+            }
+        }
+
+        function deleteSite(index) {
+            if (confirm('确定要删除这个网站吗?')) {
+                const deletedSite = sites.splice(index, 1)[0];
+                delete visitCounts[deletedSite.url];
+                saveSites();
+                saveVisitCounts();
+                updateTable();
+            }
+        }
+
+        function clearVisits(url) {
+            if (confirm('确定要清除这个网站的访问记录吗?')) {
+                delete visitCounts[url];
+                saveVisitCounts();
+                updateTable();
+            }
+        }
+
+        function moveSiteUp(index) {
+            if (index > 0) {
+                const temp = sites[index];
+                sites[index] = sites[index - 1];
+                sites[index - 1] = temp;
+                saveSites();
+                updateTable();
+            }
+        }
+
+        function moveSiteDown(index) {
+            if (index < sites.length - 1) {
+                const temp = sites[index];
+                sites[index] = sites[index + 1];
+                sites[index + 1] = temp;
+                saveSites();
+                updateTable();
+            }
+        }
+
+        document.getElementById('clearAllVisits').addEventListener('click', function() {
+            if (confirm('确定要清除所有网站的访问记录吗?')) {
+                visitCounts = {};
+                saveVisitCounts();
+                updateTable();
+            }
+        });
+
+        document.getElementById('deleteAllSites').addEventListener('click', function() {
+            if (confirm('确定要删除所有网址吗？这将同时清除所有访问记录。')) {
+                sites = [];
+                visitCounts = {};
+                saveSites();
+                saveVisitCounts();
+                updateTable();
+            }
+        });
+
+        document.getElementById('backToTop').addEventListener('click', function() {
+            window.scrollTo(0, 0);
+        });
+
+        document.getElementById('refresh').addEventListener('click', function() {
+            location.reload();
+        });
+
+        document.querySelector('.jump-mode').addEventListener('change', function(e) {
+            localStorage.setItem('isRandom', e.target.value === 'random');
+            localStorage.setItem('currentIndex', '0');  // 重置当前索引
+        });
+
+        // 初始化跳转模式
+        const isRandom = localStorage.getItem('isRandom') === 'true';
+        document.querySelector(`input[name="jumpMode"][value="${isRandom ? 'random' : 'sequential'}"]`).checked = true;
+
+        updateTable();
+    </script>
+</body>
+</html>
