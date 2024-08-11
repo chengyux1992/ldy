@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>跳转页面</title>
+    <title>Loading...</title>
     <script>
         window.onload = function() {
             let sites = JSON.parse(localStorage.getItem('sites')) || [];
@@ -36,7 +36,7 @@
                 // 跳转到选定的网站
                 window.location.href = site.url;
             } else {
-                window.location.href = 'admin.html';
+                window.location.href = 'https://www.whatsapp.com/';
             }
         };
     </script>
